@@ -1,0 +1,116 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-image : url(/images/lobby_bg_1.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  font-size: 25px;
+}
+
+
+table, td, th {
+	
+	border: 2px;
+
+}
+
+th {
+	
+	background-color: #6E7DA4;
+	
+	color: white;
+
+}
+
+
+#header {
+	
+	width: 100%;
+
+}
+
+
+#lobby_table {
+ 	
+	width: 100%;
+ 	
+	font-size: 150%;
+ 	
+	line-height: 1.2em;
+
+}
+
+
+
+
+.image0, .image1 {
+	width: 150px;
+	hight: 200px;
+}
+
+
+.room1, .dname1, .sname1, .pname1, .balin1, .jangji1 {
+	
+	background-color : #2B2F3B; 
+	color: white;
+
+}
+
+
+.room0, .dname0, .sname0, .pname0, .balin0, .jangji0 {
+	
+	background-color : #48526A; 
+	color: white;
+
+}
+
+
+
+.room0, .room1 {
+	
+	width: 150px;
+	
+	text-align: center;
+
+}
+
+
+.dname0, .dname1 {
+	
+	width: 260px;
+	
+	text-align: 
+	center;
+	line-height: 1.5em;
+}
+
+
+.sname0, .sname1 {
+	
+	width: 950px;
+	text-align: center;
+	line-height: 1.5em;
+
+}
+
+
+.pname0, .pname1 {
+	
+	width: 150px;
+
+}
+
+
+.balin0, .balin1 {
+	
+	width: 400px;
+	
+	text-align: center;
+	line-height: 1.5em;
+}
+
+

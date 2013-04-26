@@ -1,0 +1,68 @@
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">/* <![CDATA[ */
+    !window.jQuery && document.write('<script type="text/javascript" src="[% url %]/javascripts/jquery.js"><\/script>')
+/* ]]> */
+</script>
+
+<script type="text/javascript" language="javascript">
+function readURL(input)
+{
+      if (input.files && input.files[0])
+              {
+                    var reader = new FileReader();
+                   reader.onload = function (e)
+                                          {
+                                                $('#blah')
+                                                .attr('src',e.target.result)
+                                                .width(150)
+                                                .height(200);
+                                          };
+                   reader.readAsDataURL(input.files[0]);
+                   }
+}
+</script>
+
+<form  method="post" enctype="multipart/form-data">
+<div><input id="_submitted" name="_submitted" type="hidden" value="1" /></div>
+<table>
+<tr valign="top">
+  <td>호실</td>
+  <td>[% data.room_no %]</td>
+</tr>
+<tr valign="top">
+  <td>고인</td>
+  <td><input id="dname" name="dname" type="text" value="[% data.dname %]" /></td>
+</tr>
+<tr valign="top">
+  <td>변경 전 사진</td>
+  <td> <img src="/pictures/[% data.pname %]" width="100" height="100">
+  <input name="pname" type="hidden" value="[% data.pname %]" />
+  </td>
+</tr>
+<tr valign="top">
+  <td>변경 후 사진</td>
+	<td>
+		<img id="blah" src="#" alt="your image" />
+		<input type='file' name="file" onchange="readURL(this);" />
+  </td>
+</tr>
+<tr valign="top">
+  <td>상주</td>
+  <td><textarea name="sname" cols="40" rows="10">[% data.sname %]</textarea></td>
+</tr>
+<tr valign="top">
+  <td>발인</td>
+  <td><input id="balin" name="balin" type="text" value="[% data.balin %]" /></td>
+</tr>
+<tr valign="top">
+  <td>장지</td>
+  <td><input name="jangji" type="text" value="[% data.jangji %]" /></td>
+</tr>
+<tr valign="top">
+  <td align="center" colspan="2"><input id="_submit" name="_submit" type="submit" value="Submit" /></td>
+</tr>
+</table>
+</form>
+

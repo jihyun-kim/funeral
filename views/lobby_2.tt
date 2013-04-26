@@ -1,0 +1,60 @@
+<link type="text/css" rel="stylesheet" href="/css/lobby.css" />
+
+[% FOR e IN data.keys.sort %]
+[% IF loop.first %]
+	[% th = "<tr><th>호 실</th><th colspan="2">고&nbsp&nbsp&nbsp인</th><th>상&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주</th><th>발 인/장 지</th></tr>" %]
+[% END %]
+[% md = loop.count mod 2  %]
+	[% IF loop.count <= 4 %]
+		  [% str1 = str1 _ "<tr>" %]
+		  [% str1 = str1 _ "<td class=room" _ md _ ">" _ data.$e.room_no _ "</td>" %]
+		  [% str1 = str1 _ "<td class=dname" _ md _ ">" _ data.$e.dname _ "</td>" %]
+		  [% str1 = str1 _ "<td class=pname" _ md _ "><img class=image" _ md _ " src=/pictures/" _ data.$e.pname _ "> </td>" %]
+		  [% str1 = str1 _ "<td class=sname" _ md _ ">" _ data.$e.sname _ "</td>" %]
+		  [% str1 = str1 _ "<td class=balin" _ md _ ">" _ data.$e.balin _ "<br>" _ data.$e.jangji _ "</td>" %]
+		  [% str1 = str1 _ "</tr>" %]
+	[% END %]
+	[% IF loop.count > 4 %]
+		  [% str2 = str2 _ "<tr>" %]
+		  [% str2 = str2 _ "<td class=room" _ md _ ">" _ data.$e.room_no _ "</td>" %]
+		  [% str2 = str2 _ "<td class=dname" _ md _ ">" _ data.$e.dname _ "</td>" %]
+		  [% str2 = str2 _ "<td class=pname" _ md _ "><img class=image" _ md _ " src=/pictures/" _ data.$e.pname _ "> </td>" %]
+		  [% str2 = str2 _ "<td class=sname" _ md _ ">" _ data.$e.sname _ "</td>" %]
+		  [% str2 = str2 _ "<td class=balin" _ md _ ">" _ data.$e.balin _ "<br>" _ data.$e.jangji _ "</td>" %]
+		  [% str2 = str2 _ "</tr>" %]
+	[% END %]
+[% END %]
+
+<script type="text/javascript" language="javascript">
+	function refresh() {
+		location.reload();
+	}
+	setTimeout(refresh, 10000*2*6); // 2 min
+</script>
+
+<script type="text/javascript" language="javascript">
+	var slideArray = new Array()
+		slideArray[0]= "[% th _ str1 %]";
+		slideArray[1]= "[% th _ str2 %]";
+
+	function firstSlide() {
+		document.getElementById('dive_display').innerHTML=slideArray[0];
+		setTimeout("secondSlide()",10000);
+	}
+
+	function secondSlide() {
+		document.getElementById('dive_display').innerHTML=slideArray[1];
+		setTimeout("firstSlide()",10000);
+	}
+</script>
+
+<div  id="header">
+      <img src="images/header2.jpg" alt="St.vincet hospital" />
+<div>
+
+<div id="lobby_table">
+	<table id="dive_display" border="0">
+		<script type="text/javascript" language="javascript">firstSlide();</script>
+	</table>
+<div>
+

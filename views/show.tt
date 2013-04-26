@@ -1,0 +1,30 @@
+<link type="text/css" rel="stylesheet" href="/css/show.css" />
+
+<script type="text/javascript" language="javascript">
+	var slideArray = new Array()
+		slideArray[0]= "[% data.sangju1 %]";
+		slideArray[1]= "[% data.sangju2 %]";
+
+	function firstSlide() {
+		document.getElementById('div_display').innerHTML=slideArray[0];
+		setTimeout("secondSlide()",5000);
+	}
+
+	function secondSlide() {
+		document.getElementById('div_display').innerHTML=slideArray[1];
+		setTimeout("firstSlide()",5000);
+	}
+</script>
+
+  <div id="goin"> <p>[% data.goin %]</p> </div>
+  [% if data.goin2 %]
+	  <div id="goin1"> <p>[% data.goin1 %]</p> </div>
+	  <div id="goin2"> <p>[% data.goin2 %]</p> </div>
+  [% END %]
+  <div id="balin2"> <p>[% data.balin %]</p> </div>
+  <div id="jangji2"> <p>[% data.jangji %]</p> </div>
+  <div id="div_display" align="right">
+  	<script type="text/javascript" language="javascript">firstSlide();</script>
+  </div>
+  <img id="pictures" src="/pictures/[% data.pname %]"  />
+

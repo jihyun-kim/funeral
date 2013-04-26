@@ -1,0 +1,68 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-image : url(/images/show_bg.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  font-size: 50px;
+
+}
+
+
+#goin {
+  position: absolute;
+  left: 150px;
+  top: 110px;
+  width: 900px;
+  font-size: 130%;
+}
+#goin1 {
+  position: absolute;
+  left: 150px;
+  top: 90px;
+  width: 900px;
+  font-size: 130%;
+}
+#goin2 {
+  position: absolute;
+  left: 240px;
+  top: 190px;
+  width: 900px;
+  font-size: 80%;
+}
+
+#pictures {
+  position: absolute;
+  left: 110px;
+  top: 330px;
+  width: 400px;
+  height: 500px;
+}
+
+
+#balin2 {
+  position: absolute;
+  left: 780px;
+  top: 730px;
+  width: 450px;
+}
+#jangji2 {
+  position: absolute;
+  left: 780px;
+  top: 810px;
+  width: 450px;
+}
+#div_display {
+  position: absolute;
+  left: 740px;
+  top: 70px;
+  width: 450px;
+  font-size: 130%;
+  line-height: 1.2em;
+}
+
+

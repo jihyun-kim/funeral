@@ -1,0 +1,30 @@
+<link type="text/css" rel="stylesheet" href="/css/lobby.css" />
+
+<script type="text/javascript" language="javascript">
+	function refresh() {
+	location.reload();
+	}
+	setTimeout(refresh, 10000*1*12); // 2 min
+</script>
+<script type="text/javascript" language="javascript">refrech();</script>
+
+<div id="header">
+     <img src="images/header2.jpg" alt="St.vincet hospital" />
+<div>
+
+
+<div  id="lobby_table">
+	<table>
+	 	<tr><th>호 실</th><th colspan="2">고&nbsp&nbsp&nbsp인</th><th>상&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주</th><th>발 인/장 지</th></tr>
+		[% FOR e IN data.keys.sort %]
+		[% md = loop.count mod 2  %]
+		    <tr>
+		        <td class=room[% md %]>[% data.$e.room_no %]</td>
+		        <td class=dname[% md %]>[% data.$e.dname %]</td>
+		        <td class=pname[% md %]><img class=image[% md %] src="/pictures/[% data.$e.pname %]"></td>
+		        <td class=sname[% md %]>[% data.$e.sname %]</td>
+		        <td class=balin[% md %]>[% data.$e.balin %] <br> [% data.$e.jangji %] </td>
+			   </tr>
+		[% END %]
+	</table>
+</div>

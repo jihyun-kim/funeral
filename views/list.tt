@@ -1,0 +1,44 @@
+
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+
+<script>
+function delrec(record_id) {
+    if (confirm('Confirm you wish to delete this record?')) {
+        document.deleteform.rowid.value = record_id;
+        document.deleteform.submit();
+    }
+}
+</script>
+
+<form method="POST">
+<table border="1">
+	<caption>성빈센트병원 장례식장 관리</caption>
+		<tr><th>호 실</th><th>고인</th><th>사진</th><th>발 인</th><th>장 지</th><th>상 주</th><th>ACTION</th></tr>
+		[% FOR e IN data.keys.sort %]
+		    <tr>
+		        <td>[% data.$e.room_no %]</td>
+		        <td>[% data.$e.dname %]</td>
+		        <td><img src="/pictures/[% data.$e.pname %]" width="100" height="125"></td>
+		        <td>[% data.$e.balin %]</td>
+		        <td>[% data.$e.jangji %]</td>
+		        <td width="400">[% data.$e.sname %]</td>
+				<td>
+					<a href="[% url %]/edit/[% data.$e.room_no %]" class="edit_link">Edit</a>
+				  / <a href="[% url %]/delete/[% data.$e.room_no %]" class="delete_link" onclick="delrec('[% data.$e.room_no %]'); return false;">Delete</a>
+				  / <a href="[% url %]/trans/[% data.$e.room_no %]" class="trans_link">[% data.$e.trans %]</a>
+				  / <a href="[% url %]/room/[% data.$e.room_no %]" target="_blank">Preview</a>
+			    </td>
+			   </tr>
+		[% END %]
+	</table>
+</form>
+</p>
+
+<p><a href="[% url %]/add">Add a new ROOM</a></p>
+<form name="deleteform" method="post" action="[% url %]/delete">
+<input name="record_id" type="hidden">
+</form>
+<p><참고사항><br>
+& : 공백2자, %:공백3자(한글)</p>
+<br>
+
