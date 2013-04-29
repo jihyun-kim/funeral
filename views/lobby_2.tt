@@ -2,7 +2,7 @@
 
 [% FOR e IN data.keys.sort %]
 [% IF loop.first %]
-	[% th = "<tr><th>호 실</th><th colspan="2">고&nbsp&nbsp&nbsp인</th><th>상&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주</th><th>발 인/장 지</th></tr>" %]
+	[% th = "<tr><th>호 실</th><th colspan=\'2\'>고&nbsp&nbsp&nbsp인</th><th>상&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주</th><th>발 인/장 지</th></tr>" %]
 [% END %]
 [% md = loop.count mod 2  %]
 	[% IF loop.count <= 4 %]
