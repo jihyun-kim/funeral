@@ -231,7 +231,8 @@ post '/trans/:id' => sub {
 		          { trans => "1" }
 		);
 		my $ssh = connect_ssh($room_no);
-		$ssh->capture("/home/pi/chrome.sh " . $room_no . " &");
+                my $url = config->{url}{host} . "/room/" . $room_no;
+		$ssh->capture("/home/pi/chrome.sh " . $url . " &");
 		redirect '/list';
 	}
 };
@@ -282,16 +283,17 @@ sub convet_sname {
 
 sub connect_ssh {
 	my $room_no = $_[0];
-	my @ip = split /\./, config->{ssh}{server};
-	$ip[3] = $ip[3] + $room_no;
-	my $sshserver = join ".", @ip;
-	my $sshuser = config->{ssh}{userid};
-	my $sshpasswd = config->{ssh}{passwd};
+	#my @ip = split /\./, config->{ssh}{server};
+	#$ip[3] = $ip[3] + $room_no;
+	#my $sshsever = join ".", @ip;
+	my $ssh_client = config->{ssh}{client}{$room_no};
+	my $ssh_user = config->{ssh}{userid};
+	my $ssh_passwd = config->{ssh}{passwd};
 
-	my $host = $sshserver;
+	my $host = $ssh_client;
 	my %opts = (
-		user => $sshuser,
-		password => $sshpasswd,
+		user => $ssh_user,
+		password => $ssh_passwd,
 	);
 
 	my	$Rssh = Net::OpenSSH->new($host, %opts, timeout => 5, kill_ssh_on_timeout=> 1);

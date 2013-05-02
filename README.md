@@ -58,3 +58,7 @@ Funeral
 17. BugFix V4.1  (2013-04-29)
     1) lobby_2.tt lobby_3.tt colspan=\'2\'
     
+18. change configure   V4.2  (2013-05-02)
+    1) ssh_client 
+    2) url_host
+    3) ssh_passwd change  
