@@ -27,8 +27,11 @@ engines:
 
 plugins:
     Database:
-        driver: SQLite
-        database: funeral.db
+        driver: 'Pg'
+        database: 'postgres'
+        username: 'postgres'
+        password: '7025'
+        host: 'localhost'
 
 ssh:
   client: 

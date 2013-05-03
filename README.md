@@ -62,3 +62,9 @@ Funeral
     1) ssh_client 
     2) url_host
     3) ssh_passwd change  
+    
+19. DBMS change for PostgreSQL V4.3 (2013-05-03)
+    1) change postgresql
+    2) create gearman folder
+    3) create sql folder
+    4) move clear_picture.pl to /bin
