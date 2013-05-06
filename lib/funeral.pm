@@ -204,14 +204,15 @@ get '/delete/:id' => sub {
 };
 
 post '/delete/:id' => sub {
-	my $room_no = params->{id};
+	#my $room_no = params->{id};
 
 	my $delete_ok = params->{delete_ok};
 	if ($delete_ok eq "Delete record") {
 		database->quick_delete('tb_master', { room_no => params->{id}});
 
-		my $ssh = connect_ssh($room_no);
-		$ssh->capture("/home/pi/chrome.sh ps_on &");
+		##### Removal screen save function by agreement  2013-05-03
+		#my $ssh = connect_ssh($room_no);
+		#$ssh->capture("/home/pi/chrome.sh ps_on &");
 		redirect '/list';
 	}
 };
@@ -231,7 +232,7 @@ post '/trans/:id' => sub {
 		          { trans => "1" }
 		);
 		my $ssh = connect_ssh($room_no);
-                my $url = config->{url}{host} . "/room/" . $room_no;
+        my $url = config->{url}{host} . "/room/" . $room_no;
 		$ssh->capture("/home/pi/chrome.sh " . $url . " &");
 		redirect '/list';
 	}
@@ -244,7 +245,7 @@ get '/add' => sub {
 };
 
 post '/add' => sub {
-	my $room_no = params->{room_no};
+	#my $room_no = params->{room_no};
 	my $add_ok = params->{_submit};
 	if ($add_ok eq "Submit") {
 		# file upload
@@ -256,8 +257,9 @@ post '/add' => sub {
 		          'tb_master',
 		          { room_no => params->{room_no}, dname => params->{dname}, pname => $pname , balin => params->{balin}, jangji => params->{jangji}, sname => params->{sname} }
                  );
-		my $ssh = connect_ssh($room_no);
-		$ssh->capture("/home/pi/chrome.sh ps_off &");
+		##### Removal screen save function by agreement  2013-05-03
+		#my $ssh = connect_ssh($room_no);
+		#$ssh->capture("/home/pi/chrome.sh ps_off &");
 	}
     redirect '/list';
 };

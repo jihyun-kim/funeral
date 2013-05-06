@@ -68,3 +68,7 @@ Funeral
     2) create gearman folder
     3) create sql folder
     4) move clear_picture.pl to /bin
+    
+20. Removal Screen Save V4.4 (2013-05-06)
+	1) funeral.pm /add, /delete removal screen save
+	
