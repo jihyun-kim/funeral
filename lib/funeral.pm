@@ -204,15 +204,16 @@ get '/delete/:id' => sub {
 };
 
 post '/delete/:id' => sub {
-	#my $room_no = params->{id};
+	my $room_no = params->{id};
 
 	my $delete_ok = params->{delete_ok};
 	if ($delete_ok eq "Delete record") {
 		database->quick_delete('tb_master', { room_no => params->{id}});
 
 		##### Removal screen save function by agreement  2013-05-03
-		#my $ssh = connect_ssh($room_no);
-		#$ssh->capture("/home/pi/chrome.sh ps_on &");
+		##### Initialize restart                         2013-05-08
+		my $ssh = connect_ssh($room_no);
+		$ssh->capture("/home/pi/chrome.sh restart &");
 		redirect '/list';
 	}
 };

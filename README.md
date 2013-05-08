@@ -72,3 +72,6 @@ Funeral
 20. Removal Screen Save V4.4 (2013-05-06)
 	1) funeral.pm /add, /delete removal screen save
 	
+21. Initialize restart  V4.5 (2013-05-08)
+    1) /delete restart lightdm
+    
