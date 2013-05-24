@@ -75,3 +75,6 @@ Funeral
 21. Initialize restart  V4.5 (2013-05-08)
     1) /delete restart lightdm
     
+22. Combination V4.6 (2013-05-20)
+    1) Used funeral combination
+    

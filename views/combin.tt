@@ -1,0 +1,31 @@
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+
+<form method="POST">
+<table border="1">
+	<caption>빈소 공동 사용 관리</caption>
+		<tr><th>기준빈소</th><th>사용여부</th><th>공동사용1</th><th>공동사용2</th><th>공동사용3</th><th>ACTION</th></tr>
+		[% FOR e IN data.keys.sort %]
+		    <tr>
+		        <td>[% data.$e.room_no %]</td>
+		        <td>[% data.$e.use_chk %]</td>
+		        <td>[% data.$e.c1 %]</td>
+		        <td>[% data.$e.c2 %]</td>
+		        <td>[% data.$e.c3 %]</td>
+				<td>
+					<a href="[% url %]/edit2/[% data.$e.room_no %]" class="edit_link">Edit</a>
+			    </td>
+			   </tr>
+		[% END %]
+	</table>
+</form>
+
+<p><a href="[% url %]/list"><<이전 화면 </a></p>
+
+<p> 공동 사용 등록 <br>
+ 1) 기준 빈소에 사용여부를 1로 변경<br>
+ 2) 공동 사용할 빈소를 1, 2, 3순서로 빈소를 등록한다</p>
+<p> 주의사항<br>
+ 1) 해당기능은 전송과 삭제 작업에만 적용 <br>
+ 2) 전송(trans)전에 '공동 사용 등록'업무를 실시하여 주십시요 <br>
+ 3) 퇴실(delete)작업을 끝마친 후 '사용여부=0'로 변경하여 주십시요</p>
+                                    

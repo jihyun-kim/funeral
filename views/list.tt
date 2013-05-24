@@ -42,3 +42,6 @@ function delrec(record_id) {
 & : 공백2자, %:공백3자(한글)</p>
 <br>
 
+<p><a href="[% url %]/combin">빈소 공동 사용</a></p>
+
+

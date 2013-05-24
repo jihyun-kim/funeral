@@ -154,6 +154,23 @@ get '/list' => sub {
     };
 };
 
+get '/combin' => sub {
+	my $data;
+	my @ref = database->quick_select('tb_combin', {}, { order_by => 'room_no' } );
+	for (my $i = 0; $i <= $#ref; $i++) {
+		$data->{$i} = {
+			room_no => $ref[$i]->{room_no},
+			use_chk => $ref[$i]->{use_chk},
+			c1 => $ref[$i]->{c1},
+			c2 => $ref[$i]->{c2},
+			c3 => $ref[$i]->{c3},
+		};
+	}
+    template 'combin', {
+    	data => $data,
+    };
+};
+
 get '/edit/:id' => sub {
 	my $data;
 
@@ -198,6 +215,37 @@ post '/edit/:id' => sub {
     redirect '/list';
 };
 
+get '/edit2/:id' => sub {
+	my $data;
+
+	my $cb = database->quick_select('tb_combin',{ room_no   => params->{id}  });
+	$data->{room_no} = $cb->{room_no};
+	$data->{use_chk} = $cb->{use_chk};
+	$data->{c1} = $cb->{c1};
+	$data->{c2} = $cb->{c2};
+	$data->{c3} = $cb->{c3};
+    template 'edit2', {
+    	data => $data,
+    };
+};
+
+post '/edit2/:id' => sub {
+	my $update_ok = params->{_submit};
+	if ($update_ok eq "Submit") {
+		my $use_chk = params->{use_chk};
+		my $c1 = params->{c1};
+		my $c2 = params->{c2};
+		my $c3 = params->{c3};
+
+		database->quick_update(
+		          'tb_combin',
+		          { room_no => params->{id}},
+		          { use_chk => $use_chk, c1 => $c1, c2 => $c2, c3 => $c3}
+		);
+	}
+    redirect '/combin';
+};
+
 get '/delete/:id' => sub {
     template 'delete', {
     };
@@ -209,6 +257,12 @@ post '/delete/:id' => sub {
 	my $delete_ok = params->{delete_ok};
 	if ($delete_ok eq "Delete record") {
 		database->quick_delete('tb_master', { room_no => params->{id}});
+
+		###### combination check routine
+		my $cb = database->quick_select('tb_combin', {room_no => $room_no});
+		if ($cb->{use_chk} == '1') {
+			combination('delete', $room_no, $cb->{c1}, $cb->{c2}, $cb->{c3});
+		}
 
 		##### Removal screen save function by agreement  2013-05-03
 		##### Initialize restart                         2013-05-08
@@ -232,6 +286,13 @@ post '/trans/:id' => sub {
 		          { room_no => params->{id}},
 		          { trans => "1" }
 		);
+
+		###### combination check routine
+		my $cb = database->quick_select('tb_combin', {room_no => $room_no});
+		if ($cb->{use_chk} == '1') {
+			combination('trans', $room_no, $cb->{c1}, $cb->{c2}, $cb->{c3});
+		}
+
 		my $ssh = connect_ssh($room_no);
         my $url = config->{url}{host} . "/room/" . $room_no;
 		$ssh->capture("/home/pi/chrome.sh " . $url . " &");
@@ -303,6 +364,29 @@ sub connect_ssh {
 	#$ssh->error and die "SSH connection failed: " . $ssh->error;
 
 	return $Rssh;
+}
+
+sub combination {
+	my $status = $_[0];
+	my $room_no = $_[1];
+	my $ssh;
+	my $url;
+	
+	#print "caller status=$_[0] room=$_[1] $_[2] $_[3] $_[4]\n";
+	for (my $i=2; $i <= 4 ; $i++) {
+		if ($_[$i] != 0) {
+			#print "room_no ====> $_[$i]\n";
+			$ssh = connect_ssh($_[$i]);
+			if ($status eq 'trans') {
+				$url = config->{url}{host} . "/room/" . $room_no;
+				$ssh->capture("/home/pi/chrome.sh " . $url . " &");
+			} else {
+				$ssh->capture("/home/pi/chrome.sh " . "restart" . " &");
+			}
+			#sleep(15);
+		}
+	}
+
 }
 
 true;

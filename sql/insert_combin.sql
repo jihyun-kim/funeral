@@ -1,0 +1,10 @@
+insert into tb_combin VALUES ('1','0', 0,0,0);
+insert into tb_combin VALUES ('2','0', 0,0,0);
+insert into tb_combin VALUES ('3','0', 0,0,0);
+insert into tb_combin VALUES ('5','0', 0,0,0);
+insert into tb_combin VALUES ('6','0', 0,0,0);
+insert into tb_combin VALUES ('7','0', 0,0,0);
+insert into tb_combin VALUES ('8','0', 0,0,0);
+insert into tb_combin VALUES ('9','0', 0,0,0);
+insert into tb_combin VALUES ('10','0', 0,0,0);
+insert into tb_combin VALUES ('11','0', 0,0,0);

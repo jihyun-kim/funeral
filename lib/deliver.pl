@@ -18,10 +18,7 @@ print "room_no=> $client  filename=> $data\n";
 my $ip = $y->{ssh}{client}{$client};
 my $userid = $y->{ssh}{userid};
 my $passwd = $y->{ssh}{passwd};
-#print "room=>$client : $ip : $userid : $passwd  ";
-
 my $ssh = connect_ssh($ip, $userid, $passwd);
-
 $ssh->scp_put($data);
 
 
